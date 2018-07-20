@@ -1,6 +1,7 @@
 const express = require("express");
 const massive = require("massive");
 const bodyParser = require("body-parser");
+const controller = require("./controller.js")
 require("dotenv").config();
 
 
