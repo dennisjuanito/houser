@@ -76,7 +76,7 @@ export default class Wizard extends Component {
           <input value={this.state.state} type="text" onChange={e => this.handleState(e.target.value)} />
           <p>zip</p>
           <input value={this.state.zip} type="text" onChange={e => this.handleZip(e.target.value)} />
-          <Link to="/"><button onClick={() => this.addHouse()}>Complete</button></Link>
+          <Link><button onClick={() => this.addHouse()}>Complete</button></Link>
         
       </div>
     );
