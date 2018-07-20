@@ -1,0 +1,1 @@
+DELETE from Houses where id = $1 returning *;
