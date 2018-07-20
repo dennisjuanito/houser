@@ -19,6 +19,17 @@ class StepOne extends Component {
     this.handleCity = this.handleCity.bind(this);
     this.handleState = this.handleState.bind(this);
     this.handleZip = this.handleZip.bind(this);
+    this.handleNext = this.handleNext.bind(this);
+  }
+
+  componentDidMount() {
+      this.setState({
+        name: this.props.name,
+        address: this.props.address,
+        city: this.props.city,
+        state: this.props.state,
+        zip: this.props.zip
+      });
   }
 
   handleName(val) {
@@ -50,6 +61,16 @@ class StepOne extends Component {
       zip: +val
     });
   }
+
+  handleNext() {
+    let { updateName, updateAddress, updateCity, updateState, updateZip } = this.props;
+    updateName(this.state.name);
+    updateAddress(this.state.address);
+    updateCity(this.state.city);
+    updateState(this.state.state);
+    updateZip(this.state.zip);
+  }
+  
 
   render() {
     return (
@@ -85,6 +106,7 @@ class StepOne extends Component {
           type="text"
           onChange={e => this.handleZip(e.target.value)}
         />
+        <Link to="/wizard/step2"><button onClick={() => this.handleNext()}></button></Link>
       </div>
     );
   }
