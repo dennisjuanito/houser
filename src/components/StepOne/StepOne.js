@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { connect } from "react-redux";
+import { updateName, updateAddress, updateCity, updateState, updateZip } from '../../ducks/reducer.js';
 
-
-export default class StepOne extends Component {
+class StepOne extends Component {
   constructor() {
     super();
     this.state = {
@@ -50,27 +51,51 @@ export default class StepOne extends Component {
     });
   }
 
- 
   render() {
     return (
       <div>
         Wizard
-          <p>name</p>
-          <input value={this.state.name} type="text" onChange={e => this.handleName(e.target.value)} />
-          <p>address</p>
-          <input value={this.state.address}
-            type="text"
-            onChange={e => this.handleAddress(e.target.value)}
-          />
-          <p>city</p>
-          <input value={this.state.city} type="text" onChange={e => this.handleCity(e.target.value)} />
-          <p>state</p>
-          <input value={this.state.state} type="text" onChange={e => this.handleState(e.target.value)} />
-          <p>zip</p>
-          <input value={this.state.zip} type="text" onChange={e => this.handleZip(e.target.value)} />
-         
-        
+        <p>name</p>
+        <input
+          value={this.state.name}
+          type="text"
+          onChange={e => this.handleName(e.target.value)}
+        />
+        <p>address</p>
+        <input
+          value={this.state.address}
+          type="text"
+          onChange={e => this.handleAddress(e.target.value)}
+        />
+        <p>city</p>
+        <input
+          value={this.state.city}
+          type="text"
+          onChange={e => this.handleCity(e.target.value)}
+        />
+        <p>state</p>
+        <input
+          value={this.state.state}
+          type="text"
+          onChange={e => this.handleState(e.target.value)}
+        />
+        <p>zip</p>
+        <input
+          value={this.state.zip}
+          type="text"
+          onChange={e => this.handleZip(e.target.value)}
+        />
       </div>
     );
   }
 }
+
+function mapToProps(theState) {
+  let { name, address, city, state, zip } = theState;
+  return { name, address, city, state, zip };
+}
+
+export default connect(
+  mapToProps,
+  { updateName, updateAddress, updateCity, updateState, updateZip }
+)(StepOne);
