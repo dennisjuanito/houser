@@ -24,26 +24,36 @@ export default class Dashboard extends Component {
       .catch(err => console.log(err));
   }
 
-    deleteHouse(id) {
-      axios.delete(`/api/houses/delete/${id}`);
-      this.getAllHouses();
-    }
+  deleteHouse(id) {
+    axios.delete(`/api/houses/delete/${id}`);
+    this.getAllHouses();
+  }
 
-    getAllHouses() {
-      axios
-        .get(`/api/houses`)
-        .then(response => {
-          this.setState({
-            houses: response.data
-          });
-        })
-        .catch(err => console.log(err));
-    }
+  getAllHouses() {
+    axios
+      .get(`/api/houses`)
+      .then(response => {
+        this.setState({
+          houses: response.data
+        });
+      })
+      .catch(err => console.log(err));
+  }
 
   render() {
     let displayHouses = () => {
       return this.state.houses.map(house => {
-        let { id, name, address, city, state, zip } = house;
+        let {
+          id,
+          name,
+          address,
+          city,
+          state,
+          zip,
+          img,
+          mortgage,
+          rent
+        } = house;
 
         return (
           <div key={id}>
@@ -54,6 +64,9 @@ export default class Dashboard extends Component {
               city={city}
               state={state}
               zip={zip}
+              img={img}
+              mortgage={mortgage}
+              rent={rent}
               deleteHouse={this.deleteHouse}
             />
           </div>

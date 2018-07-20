@@ -4,7 +4,7 @@ const initialState = {
   city: "",
   state: "",
   zip: 0,
-  img: 0,
+  img: "",
   mortgage: 0,
   rent: 0
 };
@@ -18,6 +18,7 @@ const UPDATE_ZIP = "UPDATE_ZIP";
 const UPDATE_IMG = "UPDATE_IMG";
 const UPDATE_MORTGAGE = "UPDATE_MORTGAGE";
 const UPDATE_RENT = "UPDATE_RENT";
+const CANCEL = "CANCEL";
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -37,7 +38,17 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, { mortgage: action.payload });
     case UPDATE_RENT:
       return Object.assign({}, state, { rent: action.payload });
-
+    case CANCEL:
+      state = {
+        name: "",
+        address: "",
+        city: "",
+        state: "",
+        zip: 0,
+        img: "",
+        mortgage: 0,
+        rent: 0
+      };
     default:
       return state;
   }
@@ -98,5 +109,11 @@ export function updateRent(rent) {
   return {
     type: UPDATE_RENT,
     payload: rent
+  };
+}
+
+export function cancel() {
+  return {
+    type: CANCEL
   };
 }

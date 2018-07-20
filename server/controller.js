@@ -10,10 +10,10 @@ module.exports = {
   },
   createHouse: (req, res, next) => {
     let dbInstance = req.app.get("db");
-    let { name, address, city, state, zip } = req.body;
+    let { name, address, city, state, zip, img, mortgage, rent } = req.body;
     console.log(req.body);
     dbInstance
-      .createHouse([name, address, city, state, zip])
+      .createHouse([name, address, city, state, zip, img, mortgage, rent])
       .then(response => {
         res.send(response[0]);
       })

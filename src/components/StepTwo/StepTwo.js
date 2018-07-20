@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { connect } from "react-redux";
 import { updateImg } from "../../ducks/reducer.js";
 
@@ -8,11 +7,17 @@ class StepTwo extends Component {
   constructor() {
     super();
     this.state = {
-      img: 0
+      img: ""
     };
 
     this.handleImg = this.handleImg.bind(this);
     this.handleNext = this.handleNext.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      img: this.props.img
+    });
   }
 
   handleImg(val) {
@@ -36,7 +41,12 @@ class StepTwo extends Component {
           type="text"
           onChange={e => this.handleImg(e.target.value)}
         />
-        <Link to="/wizard/step3"><button onClick={() => this.handleNext()}></button></Link>
+        <Link to="/wizard/step3">
+          <button onClick={() => this.handleNext()}>Next Step</button>
+        </Link>
+        <Link to="/wizard/step1">
+          <button onClick={() => this.handleNext()}>Previous Step</button>
+        </Link>
       </div>
     );
   }

@@ -106,7 +106,7 @@ class StepOne extends Component {
           type="text"
           onChange={e => this.handleZip(e.target.value)}
         />
-        <Link to="/wizard/step2"><button onClick={() => this.handleNext()}></button></Link>
+        <Link to="/wizard/step2"><button onClick={() => this.handleNext()}>Next Step</button></Link>
       </div>
     );
   }
